@@ -37,14 +37,79 @@ def get_peano_curve():
     )
 
 
+def get_meurthe_curve():
+
+    chain_code = 'jjiJJijj'
+    bases = ['ij','Ji','ij','jI','JI','iJ','ji','Ji','ij']
+    return FractalCurve(
+        dim=2, div=3,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )
+    
+    
+def get_coil_curve():
+
+    chain_code = 'jjiJJijj'
+    bases = ['ji','Ji','ji','jI','JI','jI','ji','Ji','ji']
+    return FractalCurve(
+        dim=2, div=3,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )
+
+
+def get_serpentine_curve():
+
+    chain_code = 'jjiJJijj'
+    bases = ['ij','Ji','ji','iJ','JI','iJ','ji','Ji','ij']
+    return FractalCurve(
+        dim=2, div=3,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )
+
+
+def get_R_curve():
+
+    chain_code = 'jjiiJIJi'
+    bases = ['ji','ji','ij','ij','ij','IJ','JI','JI','ij']
+    return FractalCurve(
+        dim=2, div=3,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )
+
+
+def get_haverkort_curve_1():
+    """3-D curve with time reversal."""
+    chain_code = 'kjKikJK'
+    bases = ['kji0','jik0','KiJ1','iKJ0','ikj1','KIj0','kIJ1','jKI1']
+    return FractalCurve(
+        dim=3, div=2,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )  
+
+
+def get_haverkort_curve_2():
+    """3-D curve with time reversal."""
+    chain_code = 'kjKikJK'
+    bases = ['kij1','kji1','KjI0','jKI1','jki0','KJi1','kJI0','iKJ0']
+    return FractalCurve(
+        dim=3, div=2,
+        proto=chain2proto(chain_code,bases),
+        base_maps=[basis2base_map(b) for b in bases],
+    )  
+
+
 def get_tokarev_curve():
     """3-D curve."""
-    dim = 3
     chain_code = 'kjKikJK'
     bases = ['jki', 'kij', 'kij', 'iJK', 'iJK', 'KIj', 'KIj', 'JkI']
     return FractalCurve(
-        dim=dim, div=2,
-        proto=chain2proto(dim, chain_code),
+        dim=3, div=2,
+        proto=chain2proto(chain_code,bases),
         base_maps=[basis2base_map(b) for b in bases],
     )
 
@@ -56,16 +121,12 @@ def get_rev_curve():
         div=2,
         proto=[(0, 0), (0, 1), (1, 1), (1, 0)],
         base_maps=[
-            BaseMap([1, 0], [False, False]),  # (x,y)->(y,x)
+            BaseMap([1, 0], [False, False]),       # (x,y)->(y,x)
             BaseMap([0, 1], [True, False], True),  # (x,y)->(1-x,y), t->-t
-            BaseMap(dim=2),  # (x,y)->(x,y)
-            BaseMap([1, 0], [True, True]),  # (x,y)->(1-y,1-x)
+            BaseMap(dim=2),                        # (x,y)->(x,y)
+            BaseMap([1, 0], [True, True]),         # (x,y)->(1-y,1-x)
         ],
     )
-
-# def get_N_curve():
-#    proto = ['j','j','i','J','J','i','j','j']
-#    base_maps = ['ij','Ji','ji','iJ','JI','jI','ij','Ji','ji']
 
 
 # разрывная кривая - начало в центре квадрата
